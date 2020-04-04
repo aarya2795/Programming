@@ -52,7 +52,8 @@ public class IntersectionOfTwoSortedArrays{
         //If arrays not sorted, uncomment the following statement
 	//Arrays.sort(nums1); Arrays.sort(nums2);
         int k = 0;
-        for(int i = 0, j=0; i < nums1.length && j < nums2.length;)
+	    
+        for(int i = 0, j = 0; i < nums1.length && j < nums2.length;)
         {
             if(nums1[i] == nums2[j])
             {
@@ -60,26 +61,26 @@ public class IntersectionOfTwoSortedArrays{
                 i++;
                 j++;
             }
-            else if(nums1[i]<nums2[j])
+            else if(nums1[i] < nums2[j])
                 i++;
             else
                 j++;
         }
         
-        return Arrays.copyOfRange(nums1,0,k);
+        return Arrays.copyOfRange(nums1, 0, k);
     }
         
     public static void main(String []args){
 
         Scanner input = new Scanner(System.in);
         int[] nums1 = new int[]{4, 9, 5, 7, 6};
-        int[] nums2 = new int[]{9,4,9,8,4,5,6,6};
+        int[] nums2 = new int[]{9, 4, 9, 8, 4, 5, 6, 6};
         input.close();
          
         int[] result = intersectionBySorting(nums1, nums2);
         System.out.print("[ ");
         for(int n : result)
-            System.out.print(n+" ");
+            System.out.print(n + " ");
         System.out.print("]");
      }
 }
