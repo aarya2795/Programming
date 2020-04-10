@@ -1,0 +1,113 @@
+/***************************************************************************************************************************************
+Name: Remove Element
+
+Description: Given an array nums and a value val, remove all instances of that value in-place and return the new length.
+	     Do not allocate extra space for another array, do this by modifying the input array in-place with O(1) extra memory.
+	     The order of elements can be changed. It doesn't matter what you leave beyond the new length.
+
+Example 1:   Given nums = [3,2,2,3], val = 3,
+
+	     Your function should return length = 2, with the first two elements of nums being 2.
+	     It doesn't matter what you leave beyond the returned length.
+	     
+	     The outputs [4,2,3,1], [2,4,1,3], and [4,2,1,3] would also be accepted.
+
+Example 2:  Given nums = [0,1,2,2,3,0,4,2], val = 2,
+
+	     Your function should return length = 5, with the first five elements of nums containing 0, 1, 3, 0, and 4.
+	     Note that the order of those five elements can be arbitrary. 
+
+Note: The reason why the returned value is an integer but the answer is an array is because the input array is passed in by reference, 
+      which means modification to the input array will be known to the caller as well.
+
+Approach 1: Two Pointers 
+
+	    As we have to remove all elements of the given value in-place, & this needs to be handled with O(1) extra space, 
+	    the best way is that we can keep two pointers i and j, where i is the slow-runner while j is the fast-runner.
+
+Steps: 
+	1. When nums[j] equals to the given value, skip this element by incrementing j. 
+	2. As long as nums[j] != val, we copy nums[j] to nums[i] and increment both indexes at the same time.
+	   Note: here we increment i once the element is copied at the right position; this expression is - nums[i++] 
+		 This is called postfix unary increment operator, which operates by the principle of "First use, then change". 
+	3. Repeat the process until j reaches the end of the array and the new length is i.
+
+Time complexity: O(n). Assume the array has a total of n elements, both i and j traverse at most 2n steps.
+
+Space complexity: O(1).
+
+
+Approach 2: Two Pointers - (works best when elements to remove are rare)
+	
+	   Consider cases where the array contains few elements to remove. 
+	   For example, nums = [1,2,3,5,4], val = 4. 
+	   The algorithm where we check will do unnecessary copy operation of the first four elements. 
+	
+	   Another example is nums = [4,1,2,3,5], val = 4. It seems unnecessary to move elements [1,2,3,5] one step left as 
+	   the problem description mentions that the order of elements could be changed.
+
+Steps: 
+	1. When we encounter nums[i] = val, we can swap the current element out with the last element and dispose the last one 
+	2. This essentially reduces the array's size by 1
+	3. Note that the last element that was swapped in could be the value you want to remove itself; but this is taken care of,
+	   as in the next iteration we still check this element
+
+Time complexity: O(n). Both i and n traverse at most n steps. 
+		  In this approach, the number of assignment operations is equal to the number of elements to remove. 
+		  So it is more efficient if elements to remove are rare.
+
+Space Complexity: O(1).
+
+***************************************************************************************************************************************/
+
+public class RemoveElement{
+    public static int removeElement_TwoPointers(int[] nums, int val) {
+        
+        int i = 0;
+        
+        for(int j = 0; j < nums.length; j++)
+        {
+            if(nums[j] != val)
+                nums[i++] = nums[j];
+        }
+        
+        return i;
+    }
+
+    public static int removeElement_TwoPointersRareElement(int[] nums, int val) {
+        
+        int n = nums.length;
+        int i = 0;
+        
+        while(i < n)
+        {
+            if(nums[i] == val)
+            {
+                nums[i] = nums[n - 1];
+                n--;
+            }
+            else
+                i++;
+        }  
+        
+        return n;
+    }
+    
+    public static void printArray(int[] result, int len)
+    {
+        System.out.print("[");
+        for(int i = 0; i < len; i++)
+            System.out.print(result[i] + ",");
+        System.out.println("]");
+    }
+
+    public static void main(String []args){
+        int[] nums = new int[]{3, 2, 2, 3};
+        int val = 3;
+         
+        int result_TwoPointers = removeElement_TwoPointers(nums, val);
+        int result_TwoPointersRareElement = removeElement_TwoPointersRareElement(nums, val);
+        
+        printArray(nums, result_TwoPointers);
+    }
+}
