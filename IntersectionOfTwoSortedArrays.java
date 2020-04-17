@@ -71,7 +71,6 @@ public class IntersectionOfTwoSortedArrays{
     }
         
     public static void main(String []args){
-
         Scanner input = new Scanner(System.in);
         int[] nums1 = new int[]{4, 9, 5, 7, 6};
         int[] nums2 = new int[]{9, 4, 9, 8, 4, 5, 6, 6};
