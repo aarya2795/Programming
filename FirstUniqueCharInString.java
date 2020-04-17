@@ -29,7 +29,6 @@ import java.util.Map;
 import java.util.HashMap;
 
 public class FirstUniqueCharInString{
-
     public static int firstUniqChar(String s)
     {
         Map<Character, Integer> map = new HashMap<>();
