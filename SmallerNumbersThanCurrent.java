@@ -107,8 +107,7 @@ public class SmallerNumbersThanCurrent{
         return nums;
     }
 
-     public static void main(String []args){
-         
+     public static void main(String []args){         
          int[] nums = new int[]{8, 1, 2, 2, 3};
         
          int[] result = hashMapSolution(nums);
