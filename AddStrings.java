@@ -80,7 +80,7 @@ public class AddStrings{
             carry = sum < 10 ? 0 : 1;
 
             if(i < 0 && j < 0 && sum == 0)
-                return String.valueOf(result, k + 1, max - k);                      // String valueOf(int[] data, int offset, int count) 
+                return String.valueOf(result, k + 1, max - k);          // String valueOf(int[] data, int offset, int count) 
         }
     }
     
