@@ -61,7 +61,6 @@ public class PlusOne {
         System.out.print("[");
         for(int i = 0; i < plusOne.length; i++)
             System.out.print(plusOne[i] + ",");
-        System.out.println("]");
-        
+        System.out.println("]");        
     }
 }
